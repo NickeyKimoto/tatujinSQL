@@ -1,0 +1,89 @@
+/*既存のテーブルを削除*/
+DROP TABLE
+	Projects
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Projects
+	(
+		project_id VARCHAR(32),
+		step_nbr INTEGER ,
+		status VARCHAR(32),
+		PRIMARY KEY(project_id, step_nbr)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Projects
+VALUES
+	('AA100', 0, '完了'), ('AA100', 1, '待機'), ('AA100', 2, '待機'), ('B200',  0, '待機'), ('B200',  1, '待機'), ('CS300', 0, '完了'), ('CS300', 1, '完了'), ('CS300', 2, '待機'), ('CS300', 3, '待機'), ('DY400', 0, '完了'), ('DY400', 1, '完了'), ('DY400', 2, '完了')
+;
+
+/*1番の工程までだけ完了しているプロジェクトを選択*/
+SELECT
+	*
+FROM
+	Projects AS fp
+WHERE
+	 fp.project_id = ALL
+	(
+		SELECT
+			fs.project_id
+		FROM
+			Projects AS fs
+		WHERE
+			fp.project_id = fs.project_id
+		AND
+			status <> CASE 
+				WHEN step_nbr <= 1 THEN '完了'
+				ELSE '待機'
+			END
+	)
+;
+
+SELECT
+	*
+FROM
+	Projects AS fp
+WHERE
+	'完了' = ALL
+	(
+		SELECT
+			sp.status
+		FROM
+			Projects AS sp
+		WHERE
+			step_nbr = 1
+	)
+;
+	
+	CASE
+		WHEN step_nbr <= 1 THEN '完了'
+		ELSE '待機'
+	END
+;
+--------------------
+select
+	*
+from
+	Projects
+where
+	status = CASE
+		WHEN step_nbr <= 1 THEN '完了'
+		ELSE '待機'
+	END
+;
+------------------------
+
+SELECT
+	*
+FROM
+	Projects AS fs
+WHERE
+	status <> CASE 
+		WHEN step_nbr <= 1 THEN '完了'
+		ELSE '待機'
+	END
+;
