@@ -1,3 +1,48 @@
+/*Productsテーブルを削除*/
+DROP TABLE
+	Products
+;
+
+/*Products_idテーブルを削除*/
+DROP TABLE
+	Products_id
+;
+
+/*Productsテーブルを作成*/
+CREATE TABLE
+	Products
+	(
+		name VARCHAR(16) NOT NULL,
+ 		price INTEGER NOT NULL
+ 	)
+ ;
+
+
+/*Productsテーブルにレコードを挿入*/
+INSERT INTO
+	Products
+VALUES
+	('りんご',50), ('みかん',100), ('みかん',100), ('みかん',100), ('バナナ',80)
+;
+
+/*重複データを持つテーブルに識別子を与えたテーブルを作成*/
+CREATE TABLE
+	Products_id
+		SELECT
+			*,
+			ROW_NUMBER()OVER(PARTITION BY name, price) AS id
+		FROM
+			Products
+;
+
+/*テーブルから重複データを削除*/
+DELETE FROM
+	Products_id
+WHERE
+	/*idが1を超えるデータは重複データである*/
+	id > 1
+;
+
 実行前
 +-----------+-------+
 | name      | price |
@@ -8,34 +53,6 @@
 | みかん    |   100 |
 | バナナ    |    80 |
 +-----------+-------+
-
-/*重複データを持つテーブルに識別子を与えた一時テーブルを作成*/
-CREATE TEMPORARY TABLE
-	temp_table_Products AS
-		SELECT
-			*,
-			ROW_NUMBER()OVER(PARTITION BY name, price) AS row
-		FROM
-			Products
-;
-
-/*元のテーブルのデータを削除*/
-DELETE FROM
-	Products
-;
-
-/*作成した一時テーブルから必要なデータを戻す*/
-INSERT INTO
-	Products
-SELECT
-	name,
-	price
-FROM
-	temp_table
-WHERE
-	/*与えた識別子が1のデータを取得*/
-	row = 1
-;
 
 実行結果
 +-----------+-------+
