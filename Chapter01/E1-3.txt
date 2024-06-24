@@ -1,23 +1,51 @@
-/*取得するデータを指定*/
-SELECT
-	/*ナンバー(教本のカラム名はkeyだが、生成時にエラーが出てしまう
-	ため、'number'で代用)カラムをkeyと命名して指定*/
-	number AS 'key'
-/*テーブルを指定*/
-FROM
-	/*Greatests(教本準拠)テーブルを指定*/
+/*作成予定のテーブルを削除*/
+DROP TABLE
 	Greatests
-/*データを指定した順にソート*/
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Greatests
+	(
+		number VARCHAR(1),
+		x INT NULL,
+		y INT NULL,
+		z INT NULL,
+		PRIMARY KEY (number)
+	)
+;
+
+/*テーブルにデータを挿入*/
+INSERT INTO
+	Greatests
+VALUES
+	('A', 1, 2, 3),
+	('B', 5, 5, 2),
+	('C', 4, 7, 1),
+	('D', 3, 3, 8)
+;
+
+/*指定された並び順にデータを並び替える*/
+SELECT
+	number AS 'key'
+FROM
+	Greatests
 ORDER BY
-	/*'C'のデータの順番を指定*/
 	number = 'C',
-	/*'D'のデータの順番を指定*/
 	number = 'D',
-	/*'A'のデータの順番を指定*/
 	number = 'A',
-	/*'B'のデータの順番を指定*/
 	number = 'B'
 ;
+
+使用したテーブル
++--------+------+------+------+
+| number | x    | y    | z    |
++--------+------+------+------+
+| A      |    1 |    2 |    3 |
+| B      |    5 |    5 |    2 |
+| C      |    4 |    7 |    1 |
+| D      |    3 |    3 |    8 |
++--------+------+------+------+
 
 実行結果
 +-----+

@@ -13,16 +13,20 @@ CREATE TABLE
 	Products
 	(
 		name VARCHAR(16) NOT NULL,
- 		price INTEGER NOT NULL
- 	)
- ;
+		price INTEGER NOT NULL
+	)
+;
 
 
 /*Productsテーブルにレコードを挿入*/
 INSERT INTO
 	Products
 VALUES
-	('りんご',50), ('みかん',100), ('みかん',100), ('みかん',100), ('バナナ',80)
+	('りんご',50),
+	('みかん',100),
+	('みかん',100),
+	('みかん',100),
+	('バナナ',80)
 ;
 
 /*重複データを持つテーブルに識別子を与えたテーブルを作成*/
@@ -43,7 +47,7 @@ WHERE
 	id > 1
 ;
 
-実行前
+使用するテーブル
 +-----------+-------+
 | name      | price |
 +-----------+-------+

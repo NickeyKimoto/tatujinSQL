@@ -1,8 +1,52 @@
-Q.MySQLにおいて、ORDER BY句におけるソート順序でNULLがどのような順序
-になっているか調べる
+Q.MySQLにおいて、ORDER BY句におけるソート順序でNULLが
+どのような順序になっているか調べる
 
 A.
 NULLは整数値より先にある
+
+/*使用予定のテーブルを削除*/
+DROP TABLE
+	Students
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Students
+	(
+		name CHAR(16) PRIMARY KEY,
+		age INTEGER
+	)
+;
+
+/*テーブルにデータを挿入*/
+INSERT INTO
+	Students
+VALUES
+	('ブラウン', 22),
+	('ラリー', 19),
+	('ジョン', NULL),
+	('ボギー', 21)
+;
+
+/*ageカラムについて昇順ソート*/
+SELECT
+	*
+FROM
+	Students
+ORDER BY
+	age ASC
+;
+
+/*ageカラムについて降順ソート*/
+SELECT
+	*
+FROM
+	Students
+ORDER BY
+	age DESC
+;
+
+使用するテーブル
 +--------------+------+
 | name         | age  |
 +--------------+------+

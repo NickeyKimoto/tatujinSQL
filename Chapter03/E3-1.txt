@@ -1,28 +1,49 @@
-/*取得するデータを指定*/
+/*使用予定のテーブルを削除*/
+DROP TABLE
+	Products
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Products
+	(
+		name VARCHAR(16) PRIMARY KEY,
+		price INTEGER NOT NULL
+	)
+;
+
+/*テーブルにデータを挿入*/
+INSERT INTO
+	Products
+VALUES
+	('りんご', 100),
+	('みかん', 50),
+	('バナナ', 80)
+;
+
+/*2列の重複組み合わせを求める*/
 SELECT
-	/*商品名カラムをname_1(教本準拠)と命名し、指定*/
 	nf.name AS name_1,
-	/*商品名カラムをname_2(教本準拠)と命名し、指定*/
 	ns.name AS name_2
-/*テーブルを指定*/
 FROM
-	/*別名を定義し、Products(教本準拠)テーブルを指定*/
 	Products AS nf
-/*自己結合をする*/
 INNER JOIN
-	/*別名を定義し、Products(教本準拠)テーブルを指定*/
 	Products AS ns
-/*結合するキーを指定*/
 ON
-	/*同じ名前と、同じ組み合わせが存在しない組み合わせを取り出す*/
 	nf.name >= ns.name
-/*データの並び順を教本準拠にそろえる*/
 ORDER BY
-	/*name_1について降順でソート*/
 	nf.name DESC,
-	/*name_2について昇順でソート*/
 	ns.name
 ;
+
+使用するテーブル
++-----------+-------+
+| name      | price |
++-----------+-------+
+| みかん    |    50 |
+| りんご    |   100 |
+| バナナ    |    80 |
++-----------+-------+
 
 実行結果
 +-----------+-----------+
