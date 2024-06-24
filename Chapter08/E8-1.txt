@@ -1,0 +1,169 @@
+/*既存のテーブルを削除*/
+DROP TABLE
+	TblSex
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	TblAge
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	TblPop
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	TblSex
+	(
+		sex_cd char(1),
+		sex varchar(5),
+		PRIMARY KEY(sex_cd)
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	TblAge 
+	(
+		age_class char(1),
+		age_range varchar(30),
+		PRIMARY KEY(age_class)
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	TblPop
+	(
+		pref_name varchar(30),
+		age_class char(1),
+		sex_cd char(1),
+		population integer,
+		PRIMARY KEY(pref_name, age_class, sex_cd)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	TblSex(sex_cd, sex)
+VALUES
+	('m','男'),
+	('f','女')
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	TblAge(age_class, age_range)
+VALUES
+	('1', '21～30歳'),
+	('2', '31～40歳'),
+	('3', '41～50歳')
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	TblPop
+VALUES
+	('秋田', '1', 'm', 400),
+	('秋田', '3', 'm', 1000),
+	('秋田', '1', 'f', 800),
+	('秋田', '3', 'f', 1000),
+	('青森', '1', 'm', 700),
+	('青森', '1', 'f', 500),
+	('青森', '3', 'f', 800),
+	('東京', '1', 'm', 900),
+	('東京', '1', 'f', 1500),
+	('東京', '3', 'f', 1200),
+	('千葉', '1', 'm', 900),
+	('千葉', '1', 'f', 1000),
+	('千葉', '3', 'f', 900)
+;
+
+/*年齢階級、性別ごとの人口構成を調べる*/
+SELECT
+	MASTER.age_class AS age_class,
+	MASTER.sex_cd AS sex_cd,
+	SUM(
+		CASE
+			WHEN pref_name IN ('秋田', '青森') THEN population
+			ELSE NULL
+		END
+	) AS pop_tohoku,
+	SUM(
+		CASE
+			WHEN pref_name IN ('千葉', '東京') THEN population
+			ELSE NULL
+		END
+	) AS pop_kanto
+FROM
+	(
+		SELECT
+			age_class,
+			sex_cd
+		FROM
+			TblAge
+		CROSS JOIN
+			TblSex
+	) AS MASTER
+LEFT JOIN
+	TblPop
+ON
+	MASTER.age_class = TblPop.age_class
+AND
+	MASTER.sex_cd = TblPop.sex_cd
+GROUP BY
+	MASTER.age_class,
+	MASTER.sex_cd
+ORDER BY
+	MASTER.age_class ASC,
+	MASTER.sex_cd DESC
+;
+   
+
+使用するテーブル
++--------+------+
+| sex_cd | sex  |
++--------+------+
+| f      | 女   |
+| m      | 男   |
++--------+------+
+
++-----------+------------+
+| age_class | age_range  |
++-----------+------------+
+| 1         | 21～30歳   |
+| 2         | 31～40歳   |
+| 3         | 41～50歳   |
++-----------+------------+
+
++-----------+-----------+--------+------------+
+| pref_name | age_class | sex_cd | population |
++-----------+-----------+--------+------------+
+| 千葉      | 1         | f      |       1000 |
+| 千葉      | 1         | m      |        900 |
+| 千葉      | 3         | f      |        900 |
+| 東京      | 1         | f      |       1500 |
+| 東京      | 1         | m      |        900 |
+| 東京      | 3         | f      |       1200 |
+| 秋田      | 1         | f      |        800 |
+| 秋田      | 1         | m      |        400 |
+| 秋田      | 3         | f      |       1000 |
+| 秋田      | 3         | m      |       1000 |
+| 青森      | 1         | f      |        500 |
+| 青森      | 1         | m      |        700 |
+| 青森      | 3         | f      |        800 |
++-----------+-----------+--------+------------+
+
+実行結果
++-----------+--------+------------+-----------+
+| age_class | sex_cd | pop_tohoku | pop_kanto |
++-----------+--------+------------+-----------+
+| 1         | m      |       1100 |      1800 |
+| 1         | f      |       1300 |      2500 |
+| 2         | m      |       NULL |      NULL |
+| 2         | f      |       NULL |      NULL |
+| 3         | m      |       1000 |      NULL |
+| 3         | f      |       1800 |      2100 |
++-----------+--------+------------+-----------+

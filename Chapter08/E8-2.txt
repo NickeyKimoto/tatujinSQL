@@ -1,0 +1,85 @@
+/*既存のテーブルを削除*/
+DROP TABLE
+	Personnel
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Personnel
+	(
+		employee varchar(32),
+		child_1 varchar(32),
+		child_2 varchar(32),
+		child_3 varchar(32),
+		PRIMARY KEY(employee)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Personnel
+VALUES
+	('赤井', '一郎', '二郎', '三郎'),
+	('工藤', '春子', '夏子', NULL),
+	('鈴木', '夏子', NULL,   NULL),
+	('吉田', NULL,   NULL,   NULL)
+;
+
+/*子供の一覧を保持するビューを作成*/
+CREATE VIEW
+	Children
+	(
+		child
+	)
+AS
+	SELECT
+		child_1
+	FROM
+		Personnel
+UNION
+	SELECT
+		child_2
+	FROM
+		Personnel
+UNION
+	SELECT
+		child_3
+	FROM
+		Personnel
+;
+
+/*指定された結果を求める*/
+SELECT
+	EMP.employee,
+	COUNT(Children.child) AS child_cnt
+FROM
+	Personnel AS EMP
+LEFT JOIN
+	Children
+ON
+	Children.child IN (EMP.child_1, EMP.child_2, EMP.child_3)
+GROUP BY
+	EMP.employee
+ORDER BY
+	COUNT(Children.child) DESC
+;
+
+使用するテーブル
++----------+---------+---------+---------+
+| employee | child_1 | child_2 | child_3 |
++----------+---------+---------+---------+
+| 吉田     | NULL    | NULL    | NULL    |
+| 工藤     | 春子    | 夏子    | NULL    |
+| 赤井     | 一郎    | 二郎    | 三郎    |
+| 鈴木     | 夏子    | NULL    | NULL    |
++----------+---------+---------+---------+
+
+実行結果
++----------+-----------+
+| employee | child_cnt |
++----------+-----------+
+| 赤井     |         3 |
+| 工藤     |         2 |
+| 鈴木     |         1 |
+| 吉田     |         0 |
++----------+-----------+

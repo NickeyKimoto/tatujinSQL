@@ -1,0 +1,85 @@
+/*既存のテーブルを削除*/
+DROP TABLE
+	Class_A
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	Class_B
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Class_A
+	(
+		id char(1),
+		name varchar(30),
+		PRIMARY KEY(id)
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Class_B
+	(
+		id char(1),
+		name varchar(30),
+		PRIMARY KEY(id)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Class_A(id, name)
+VALUES
+	('1', '田中'),
+	('2', '鈴木'),
+	('3', '伊集院')
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Class_B(id, name)
+VALUES
+	('1', '田中'),
+	('2', '内海'),
+	('4', '西園寺')
+;
+
+/*Class_BのデータをClass_Aにマージする*/
+INSERT INTO
+	Class_A(id, name)
+SELECT
+	*
+FROM
+	Class_B AS b
+ON DUPLICATE KEY UPDATE
+	name = b.name
+;
+
+使用するテーブル
++----+-----------+
+| id | name      |
++----+-----------+
+| 1  | 田中      |
+| 2  | 鈴木      |
+| 3  | 伊集院    |
++----+-----------+
+
++----+-----------+
+| id | name      |
++----+-----------+
+| 1  | 田中      |
+| 2  | 内海      |
+| 4  | 西園寺    |
++----+-----------+
+
+実行結果
++----+-----------+
+| id | name      |
++----+-----------+
+| 1  | 田中      |
+| 2  | 内海      |
+| 3  | 伊集院    |
+| 4  | 西園寺    |
++----+-----------+
