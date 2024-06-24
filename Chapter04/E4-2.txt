@@ -4,30 +4,6 @@ Q.MySQLにおいて、NULLと文字列を連結したときの結果が
 A.
 文字列がNULLになる
 
-/*使用予定のテーブルを削除*/
-DROP TABLE
-	Students
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	Students
-	(
-		name CHAR(16) PRIMARY KEY,
-		age INTEGER
-	)
-;
-
-/*テーブルにデータを挿入*/
-INSERT INTO
-	Students
-VALUES
-	('ブラウン', 22),
-	('ラリー', 19),
-	('ジョン', NULL),
-	('ボギー', 21)
-;
-
 /*NULLと文字列を連結する*/
 SELECT
 	name,

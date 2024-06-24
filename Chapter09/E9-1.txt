@@ -1,0 +1,88 @@
+/*既存のテーブルを削除*/
+DROP TABLE
+	Tbl_A
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	Tbl_B
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Tbl_A
+	(
+		keycol CHAR(1) PRIMARY KEY,
+		col_1 INTEGER,
+		col_2 INTEGER,
+		col_3 INTEGER
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Tbl_B
+	(
+		keycol CHAR(1) PRIMARY KEY,
+		col_1 INTEGER,
+		col_2 INTEGER,
+		col_3 INTEGER
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Tbl_A
+VALUES
+	('A', 2, 3, 4),
+	('B', 0, 7, 9),
+	('C', 5, 1, 6)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Tbl_B
+VALUES
+	('A', 2, 3, 4),
+	('B', 0, 7, 9),
+	('C', 5, 1, 6)
+;
+
+SELECT
+	CASE
+		WHEN Tbl_A.COUNT(*) = Tbl_B.COUNT THEN COUNT(*) AS row_cnt
+		ELSE 0
+	END
+FROM
+	(
+		SELECT
+			*
+		FROM
+			Tbl_A
+		UNION
+			SELECT
+				*
+			FROM
+				Tbl_B
+	) AS TMP
+;
+
+使用するテーブル
++--------+-------+-------+-------+
+| keycol | col_1 | col_2 | col_3 |
++--------+-------+-------+-------+
+| A      |     2 |     3 |     4 |
+| B      |     0 |     7 |     9 |
+| C      |     5 |     1 |     6 |
++--------+-------+-------+-------+
+
++--------+-------+-------+-------+
+| keycol | col_1 | col_2 | col_3 |
++--------+-------+-------+-------+
+| A      |     2 |     3 |     4 |
+| B      |     0 |     7 |     9 |
+| C      |     5 |     1 |     6 |
++--------+-------+-------+-------+
+
+実行結果
+

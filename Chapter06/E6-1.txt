@@ -1,29 +1,3 @@
-/*既存のテーブルを削除*/
-DROP TABLE
-	SeqTbl
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	SeqTbl
-	(
-		seq INTEGER PRIMARY KEY,
-		name VARCHAR(16) NOT NULL
-	)
-;
-
-/*使用するテーブルにデータを挿入*/
-INSERT INTO
-	SeqTbl
-VALUES
-	(1, 'ディック'),
-	(2, 'アン'),
-	(3, 'ライル'),
-	(5, 'カー'),
-	(6, 'マリー'),
-	(8, 'ベン')
-;
-
 /*歯抜けがある場合に「歯抜けあり」と返し、歯抜けが
 ない場合に「歯抜けなし」と返す*/
 SELECT

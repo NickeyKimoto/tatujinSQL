@@ -1,34 +1,3 @@
-/*Productsテーブルを削除*/
-DROP TABLE
-	Products
-;
-
-/*Products_idテーブルを削除*/
-DROP TABLE
-	Products_id
-;
-
-/*Productsテーブルを作成*/
-CREATE TABLE
-	Products
-	(
-		name VARCHAR(16) NOT NULL,
-		price INTEGER NOT NULL
-	)
-;
-
-
-/*Productsテーブルにレコードを挿入*/
-INSERT INTO
-	Products
-VALUES
-	('りんご',50),
-	('みかん',100),
-	('みかん',100),
-	('みかん',100),
-	('バナナ',80)
-;
-
 /*重複データを持つテーブルに識別子を与えたテーブルを作成*/
 CREATE TABLE
 	Products_id

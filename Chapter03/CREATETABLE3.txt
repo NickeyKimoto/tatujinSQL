@@ -1,0 +1,75 @@
+/*E3-1*/
+/*使用予定のテーブルを削除*/
+DROP TABLE
+	Products
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Products
+	(
+		name VARCHAR(16) PRIMARY KEY,
+		price INTEGER NOT NULL
+	)
+;
+
+/*テーブルにデータを挿入*/
+INSERT INTO
+	Products
+VALUES
+	('りんご', 100),
+	('みかん', 50),
+	('バナナ', 80)
+;
+
+テーブル名：Products
++-----------+-------+
+| name      | price |
++-----------+-------+
+| みかん    |    50 |
+| りんご    |   100 |
+| バナナ    |    80 |
++-----------+-------+
+
+
+/*E3-2*/
+/*Productsテーブルを削除*/
+DROP TABLE
+	Products
+;
+
+/*Products_idテーブルを削除*/
+DROP TABLE
+	Products_id
+;
+
+/*Productsテーブルを作成*/
+CREATE TABLE
+	Products
+	(
+		name VARCHAR(16) NOT NULL,
+		price INTEGER NOT NULL
+	)
+;
+
+/*Productsテーブルにレコードを挿入*/
+INSERT INTO
+	Products
+VALUES
+	('りんご',50),
+	('みかん',100),
+	('みかん',100),
+	('みかん',100),
+	('バナナ',80)
+;
+
+テーブル名：Products
++-----------+-------+
+| name      | price |
++-----------+-------+
+| りんご    |    50 |
+| みかん    |   100 |
+| みかん    |   100 |
+| みかん    |   100 |
+| バナナ    |    80 |
++-----------+-------+

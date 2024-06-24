@@ -1,26 +1,3 @@
-/*使用予定のテーブルを削除*/
-DROP TABLE
-	Products
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	Products
-	(
-		name VARCHAR(16) PRIMARY KEY,
-		price INTEGER NOT NULL
-	)
-;
-
-/*テーブルにデータを挿入*/
-INSERT INTO
-	Products
-VALUES
-	('りんご', 100),
-	('みかん', 50),
-	('バナナ', 80)
-;
-
 /*2列の重複組み合わせを求める*/
 SELECT
 	nf.name AS name_1,

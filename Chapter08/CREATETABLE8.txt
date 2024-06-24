@@ -1,0 +1,226 @@
+/*E8-1*/
+/*既存のテーブルを削除*/
+DROP TABLE
+	TblSex
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	TblAge
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	TblPop
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	TblSex
+	(
+		sex_cd char(1),
+		sex varchar(5),
+		PRIMARY KEY(sex_cd)
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	TblAge 
+	(
+		age_class char(1),
+		age_range varchar(30),
+		PRIMARY KEY(age_class)
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	TblPop
+	(
+		pref_name varchar(30),
+		age_class char(1),
+		sex_cd char(1),
+		population integer,
+		PRIMARY KEY(pref_name, age_class, sex_cd)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	TblSex(sex_cd, sex)
+VALUES
+	('m','男'),
+	('f','女')
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	TblAge(age_class, age_range)
+VALUES
+	('1', '21～30歳'),
+	('2', '31～40歳'),
+	('3', '41～50歳')
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	TblPop
+VALUES
+	('秋田', '1', 'm', 400),
+	('秋田', '3', 'm', 1000),
+	('秋田', '1', 'f', 800),
+	('秋田', '3', 'f', 1000),
+	('青森', '1', 'm', 700),
+	('青森', '1', 'f', 500),
+	('青森', '3', 'f', 800),
+	('東京', '1', 'm', 900),
+	('東京', '1', 'f', 1500),
+	('東京', '3', 'f', 1200),
+	('千葉', '1', 'm', 900),
+	('千葉', '1', 'f', 1000),
+	('千葉', '3', 'f', 900)
+;
+
+テーブル名：TblSex
++--------+------+
+| sex_cd | sex  |
++--------+------+
+| f      | 女   |
+| m      | 男   |
++--------+------+
+
+テーブル名：TblAge
++-----------+------------+
+| age_class | age_range  |
++-----------+------------+
+| 1         | 21～30歳   |
+| 2         | 31～40歳   |
+| 3         | 41～50歳   |
++-----------+------------+
+
+テーブル名：TblPop
++-----------+-----------+--------+------------+
+| pref_name | age_class | sex_cd | population |
++-----------+-----------+--------+------------+
+| 千葉      | 1         | f      |       1000 |
+| 千葉      | 1         | m      |        900 |
+| 千葉      | 3         | f      |        900 |
+| 東京      | 1         | f      |       1500 |
+| 東京      | 1         | m      |        900 |
+| 東京      | 3         | f      |       1200 |
+| 秋田      | 1         | f      |        800 |
+| 秋田      | 1         | m      |        400 |
+| 秋田      | 3         | f      |       1000 |
+| 秋田      | 3         | m      |       1000 |
+| 青森      | 1         | f      |        500 |
+| 青森      | 1         | m      |        700 |
+| 青森      | 3         | f      |        800 |
++-----------+-----------+--------+------------+
+
+
+/*E8-2*/
+/*既存のテーブルを削除*/
+DROP TABLE
+	Personnel
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Personnel
+	(
+		employee varchar(32),
+		child_1 varchar(32),
+		child_2 varchar(32),
+		child_3 varchar(32),
+		PRIMARY KEY(employee)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Personnel
+VALUES
+	('赤井', '一郎', '二郎', '三郎'),
+	('工藤', '春子', '夏子', NULL),
+	('鈴木', '夏子', NULL,   NULL),
+	('吉田', NULL,   NULL,   NULL)
+;
+
+テーブル名：Personnel
++----------+---------+---------+---------+
+| employee | child_1 | child_2 | child_3 |
++----------+---------+---------+---------+
+| 吉田     | NULL    | NULL    | NULL    |
+| 工藤     | 春子    | 夏子    | NULL    |
+| 赤井     | 一郎    | 二郎    | 三郎    |
+| 鈴木     | 夏子    | NULL    | NULL    |
++----------+---------+---------+---------+
+
+
+/*E8-3*/
+/*既存のテーブルを削除*/
+DROP TABLE
+	Class_A
+;
+
+/*既存のテーブルを削除*/
+DROP TABLE
+	Class_B
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Class_A
+	(
+		id char(1),
+		name varchar(30),
+		PRIMARY KEY(id)
+	)
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	Class_B
+	(
+		id char(1),
+		name varchar(30),
+		PRIMARY KEY(id)
+	)
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Class_A(id, name)
+VALUES
+	('1', '田中'),
+	('2', '鈴木'),
+	('3', '伊集院')
+;
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	Class_B(id, name)
+VALUES
+	('1', '田中'),
+	('2', '内海'),
+	('4', '西園寺')
+;
+
+テーブル名：Class_A
++----+-----------+
+| id | name      |
++----+-----------+
+| 1  | 田中      |
+| 2  | 鈴木      |
+| 3  | 伊集院    |
++----+-----------+
+
+テーブル名：Class_B
++----+-----------+
+| id | name      |
++----+-----------+
+| 1  | 田中      |
+| 2  | 内海      |
+| 4  | 西園寺    |
++----+-----------+
