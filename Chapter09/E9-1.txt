@@ -1,58 +1,23 @@
-/*既存のテーブルを削除*/
-DROP TABLE
-	Tbl_A
-;
-
-/*既存のテーブルを削除*/
-DROP TABLE
-	Tbl_B
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	Tbl_A
-	(
-		keycol CHAR(1) PRIMARY KEY,
-		col_1 INTEGER,
-		col_2 INTEGER,
-		col_3 INTEGER
-	)
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	Tbl_B
-	(
-		keycol CHAR(1) PRIMARY KEY,
-		col_1 INTEGER,
-		col_2 INTEGER,
-		col_3 INTEGER
-	)
-;
-
-/*使用するテーブルにデータを挿入*/
-INSERT INTO
-	Tbl_A
-VALUES
-	('A', 2, 3, 4),
-	('B', 0, 7, 9),
-	('C', 5, 1, 6)
-;
-
-/*使用するテーブルにデータを挿入*/
-INSERT INTO
-	Tbl_B
-VALUES
-	('A', 2, 3, 4),
-	('B', 0, 7, 9),
-	('C', 5, 1, 6)
-;
-
+/*行数を調べずにテーブルが等しいか比較する*/
 SELECT
 	CASE
-		WHEN Tbl_A.COUNT(*) = Tbl_B.COUNT THEN COUNT(*) AS row_cnt
-		ELSE 0
-	END
+		WHEN
+			COUNT(*) = (
+				SELECT
+					COUNT(*)
+				FROM
+					Tbl_A
+			)
+		AND
+			COUNT(*) = (
+				SELECT
+					COUNT(*)
+				FROM
+					Tbl_B
+			)
+		 THEN '＝'
+		ELSE '≠'
+	END AS row
 FROM
 	(
 		SELECT
@@ -85,4 +50,8 @@ FROM
 +--------+-------+-------+-------+
 
 実行結果
-
++------+
+| row  |
++------+
+| ＝   |
++------+

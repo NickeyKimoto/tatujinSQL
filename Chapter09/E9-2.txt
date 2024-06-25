@@ -1,79 +1,28 @@
-/*既存のテーブルを削除*/
-DROP TABLE
-	Skills
-;
-
-/*既存のテーブルを削除*/
-DROP TABLE
-	EmpSkills
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	Skills
-	(
-		skill VARCHAR(32),
-		PRIMARY KEY(skill)
-	)
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	EmpSkills
-	(
-		emp VARCHAR(32),
-		skill VARCHAR(32),
-		PRIMARY KEY(emp, skill)
-	)
-;
-
-/*使用するテーブルにデータを挿入*/
-INSERT INTO
-	Skills
-VALUES
-	('Oracle'),
-	('UNIX'),
-	('Java')
-;
-
-/*使用するテーブルにデータを挿入*/
-INSERT INTO
-	EmpSkills
-VALUES
-	('相田', 'Oracle'),
-	('相田', 'UNIX'),
-	('相田', 'Java'),
-	('相田', 'C#'),
-	('神崎', 'Oracle'),
-	('神崎', 'UNIX'),
-	('神崎', 'Java'),
-	('平井', 'UNIX'),
-	('平井', 'Oracle'),
-	('平井', 'PHP'),
-	('平井', 'Perl'),
-	('平井', 'C++'),
-	('若田部', 'Perl'),
-	('渡来', 'Oracle')
-;
-
-SELECT DISTINCT
-	emp
+SELECT
+	es.emp
 FROM
-	EmpSkills AS ES1
-WHERE
-	NOT EXISTS
-	(
+	EmpSkills AS es
+LEFT JOIN
+	Skills AS s
+ON
+	es.skill = s.skill
+GROUP BY
+	es.emp
+HAVING
+	COUNT(es.skill) = (
 		SELECT
-			skill
+			COUNT(skill)
 		FROM
 			Skills
-		EXCEPT
+			
+		)
+AND
+	COUNT(s.skill) = (
 		SELECT
-			skill
+			COUNT(skill)
 		FROM
-			EmpSkills AS ES2
-		WHERE
-			ES1.emp = ES2.emp
+			Skills
+			
 	)
 ;
 
@@ -106,4 +55,8 @@ WHERE
 +-----------+--------+
 
 実行結果
-
++--------+
+| emp    |
++--------+
+| 神崎   |
++--------+
