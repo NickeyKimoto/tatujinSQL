@@ -1,22 +1,22 @@
 /*E8-1*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	TblSex
+DROP TABLE IF EXISTS
+	tblsex
 ;
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	TblAge
+DROP TABLE IF EXISTS
+	tblage
 ;
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	TblPop
+DROP TABLE IF EXISTS
+	tblpop
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	TblSex
+	tblsex
 	(
 		sex_cd char(1),
 		sex varchar(5),
@@ -26,7 +26,7 @@ CREATE TABLE
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	TblAge 
+	tblage 
 	(
 		age_class char(1),
 		age_range varchar(30),
@@ -36,7 +36,7 @@ CREATE TABLE
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	TblPop
+	tblpop
 	(
 		pref_name varchar(30),
 		age_class char(1),
@@ -48,7 +48,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	TblSex(sex_cd, sex)
+	tblsex(sex_cd, sex)
 VALUES
 	('m','男'),
 	('f','女')
@@ -56,7 +56,7 @@ VALUES
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	TblAge(age_class, age_range)
+	tblage(age_class, age_range)
 VALUES
 	('1', '21～30歳'),
 	('2', '31～40歳'),
@@ -65,7 +65,7 @@ VALUES
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	TblPop
+	tblpop
 VALUES
 	('秋田', '1', 'm', 400),
 	('秋田', '3', 'm', 1000),
@@ -82,7 +82,7 @@ VALUES
 	('千葉', '3', 'f', 900)
 ;
 
-テーブル名：TblSex
+テーブル名：tblsex
 +--------+------+
 | sex_cd | sex  |
 +--------+------+
@@ -90,7 +90,7 @@ VALUES
 | m      | 男   |
 +--------+------+
 
-テーブル名：TblAge
+テーブル名：tblage
 +-----------+------------+
 | age_class | age_range  |
 +-----------+------------+
@@ -99,7 +99,7 @@ VALUES
 | 3         | 41～50歳   |
 +-----------+------------+
 
-テーブル名：TblPop
+テーブル名：tblpop
 +-----------+-----------+--------+------------+
 | pref_name | age_class | sex_cd | population |
 +-----------+-----------+--------+------------+
@@ -121,13 +121,13 @@ VALUES
 
 /*E8-2*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Personnel
+DROP TABLE IF EXISTS
+	personnel
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Personnel
+	personnel
 	(
 		employee varchar(32),
 		child_1 varchar(32),
@@ -139,7 +139,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Personnel
+	personnel
 VALUES
 	('赤井', '一郎', '二郎', '三郎'),
 	('工藤', '春子', '夏子', NULL),
@@ -147,7 +147,7 @@ VALUES
 	('吉田', NULL,   NULL,   NULL)
 ;
 
-テーブル名：Personnel
+テーブル名：personnel
 +----------+---------+---------+---------+
 | employee | child_1 | child_2 | child_3 |
 +----------+---------+---------+---------+
@@ -160,18 +160,18 @@ VALUES
 
 /*E8-3*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Class_A
+DROP TABLE IF EXISTS
+	class_a
 ;
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	Class_B
+DROP TABLE IF EXISTS
+	class_b
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Class_A
+	class_a
 	(
 		id char(1),
 		name varchar(30),
@@ -181,7 +181,7 @@ CREATE TABLE
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Class_B
+	class_b
 	(
 		id char(1),
 		name varchar(30),
@@ -191,7 +191,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Class_A(id, name)
+	class_a(id, name)
 VALUES
 	('1', '田中'),
 	('2', '鈴木'),
@@ -200,14 +200,14 @@ VALUES
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Class_B(id, name)
+	class_b(id, name)
 VALUES
 	('1', '田中'),
 	('2', '内海'),
 	('4', '西園寺')
 ;
 
-テーブル名：Class_A
+テーブル名：class_a
 +----+-----------+
 | id | name      |
 +----+-----------+
@@ -216,7 +216,7 @@ VALUES
 | 3  | 伊集院    |
 +----+-----------+
 
-テーブル名：Class_B
+テーブル名：class_b
 +----+-----------+
 | id | name      |
 +----+-----------+

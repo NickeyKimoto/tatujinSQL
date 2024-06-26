@@ -1,12 +1,12 @@
 /*E3-1*/
 /*使用予定のテーブルを削除*/
-DROP TABLE
-	Products
+DROP TABLE IF EXISTS
+	products
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Products
+	products
 	(
 		name VARCHAR(16) PRIMARY KEY,
 		price INTEGER NOT NULL
@@ -15,14 +15,14 @@ CREATE TABLE
 
 /*テーブルにデータを挿入*/
 INSERT INTO
-	Products
+	products
 VALUES
 	('りんご', 100),
 	('みかん', 50),
 	('バナナ', 80)
 ;
 
-テーブル名：Products
+テーブル名：products
 +-----------+-------+
 | name      | price |
 +-----------+-------+
@@ -33,28 +33,23 @@ VALUES
 
 
 /*E3-2*/
-/*Productsテーブルを削除*/
-DROP TABLE
-	Products
+/*productsテーブルを削除*/
+DROP TABLE IF EXISTS
+	products
 ;
 
-/*Products_idテーブルを削除*/
-DROP TABLE
-	Products_id
-;
-
-/*Productsテーブルを作成*/
+/*productsテーブルを作成*/
 CREATE TABLE
-	Products
+	products
 	(
 		name VARCHAR(16) NOT NULL,
 		price INTEGER NOT NULL
 	)
 ;
 
-/*Productsテーブルにレコードを挿入*/
+/*productsテーブルにレコードを挿入*/
 INSERT INTO
-	Products
+	products
 VALUES
 	('りんご',50),
 	('みかん',100),
@@ -63,7 +58,7 @@ VALUES
 	('バナナ',80)
 ;
 
-テーブル名：Products
+テーブル名：products
 +-----------+-------+
 | name      | price |
 +-----------+-------+

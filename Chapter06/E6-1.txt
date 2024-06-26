@@ -6,7 +6,7 @@ SELECT
 		ELSE '歯抜けなし'
 	END AS gap
 FROM
-	SeqTbl
+	seqtbl
 ;
 
 使用するテーブル

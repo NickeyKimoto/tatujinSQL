@@ -2,7 +2,7 @@
 SELECT
 	*
 FROM
-	Numbers AS fn
+	numbers AS fn
 WHERE
 	/*1は素数に含まれない*/
 	fn.num > 1
@@ -12,7 +12,7 @@ AND
 		SELECT
 			*
 		FROM
-			Numbers AS sn
+			numbers AS sn
 		WHERE
 			/*半分以上の数で割れない*/
 			sn.num <= fn.num / 2

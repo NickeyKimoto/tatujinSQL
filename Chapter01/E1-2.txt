@@ -33,7 +33,7 @@ SELECT
 		END
 	) AS '四国(再掲)'
 FROM
-	PopTbl2
+	poptbl2
 GROUP BY
 	sex
 ;

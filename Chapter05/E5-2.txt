@@ -2,7 +2,7 @@
 SELECT
 	*
 FROM
-	Projects AS fp
+	projects AS fp
 WHERE
 	/*条件に合っているデータを取り出す*/
 	1 = ALL
@@ -27,7 +27,7 @@ WHERE
 				ELSE 0
 			END
 		FROM
-			Projects AS sp
+			projects AS sp
 		WHERE
 			fp.project_id = sp.project_id
 	)

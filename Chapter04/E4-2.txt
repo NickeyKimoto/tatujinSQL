@@ -10,7 +10,7 @@ SELECT
 	age,
 	CONCAT(name, NULL)
 FROM
-	Students
+	students
 ;
 
 使用するテーブル

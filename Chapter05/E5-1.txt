@@ -2,14 +2,14 @@
 SELECT
 	fa.key_id
 FROM
-	ArrayTbl2 AS fa
+	arraytbl2 AS fa
 WHERE
 	NOT EXISTS
 	(
 		SELECT
 			sa.key_id
 		FROM
-			ArrayTbl2 AS sa
+			arraytbl2 AS sa
 		WHERE
 			fa.key_id = sa.key_id
 		AND
@@ -92,7 +92,7 @@ GROUP BY
 SELECT
 	key_id
 FROM
-	ArrayTbl2
+	arraytbl2
 WHERE
 	/*値が1であるvalを指定*/
 	val = 1

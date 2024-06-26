@@ -1,10 +1,10 @@
-/*Class_BのデータをClass_Aにマージする*/
+/*class_bのデータをclass_aにマージする*/
 INSERT INTO
-	Class_A(id, name)
+	class_a(id, name)
 SELECT
 	*
 FROM
-	Class_B AS b
+	class_b AS b
 ON DUPLICATE KEY UPDATE
 	name = b.name
 ;

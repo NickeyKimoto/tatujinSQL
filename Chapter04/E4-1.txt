@@ -8,7 +8,7 @@ NULLは整数値より先にある
 SELECT
 	*
 FROM
-	Students
+	students
 ORDER BY
 	age ASC
 ;
@@ -17,7 +17,7 @@ ORDER BY
 SELECT
 	*
 FROM
-	Students
+	students
 ORDER BY
 	age DESC
 ;

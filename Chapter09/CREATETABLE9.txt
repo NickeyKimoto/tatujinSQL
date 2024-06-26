@@ -1,17 +1,17 @@
 /*9-1*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Tbl_A
+DROP TABLE IF EXISTS
+	tbl_a
 ;
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	Tbl_B
+DROP TABLE IF EXISTS
+	tbl_b
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Tbl_A
+	tbl_a
 	(
 		keycol CHAR(1) PRIMARY KEY,
 		col_1 INTEGER,
@@ -22,7 +22,7 @@ CREATE TABLE
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Tbl_B
+	tbl_b
 	(
 		keycol CHAR(1) PRIMARY KEY,
 		col_1 INTEGER,
@@ -33,7 +33,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Tbl_A
+	tbl_a
 VALUES
 	('A', 2, 3, 4),
 	('B', 0, 7, 9),
@@ -42,14 +42,14 @@ VALUES
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Tbl_B
+	tbl_b
 VALUES
 	('A', 2, 3, 4),
 	('B', 0, 7, 9),
 	('C', 5, 1, 6)
 ;
 
-テーブル名：Tbl_A
+テーブル名：tbl_a
 +--------+-------+-------+-------+
 | keycol | col_1 | col_2 | col_3 |
 +--------+-------+-------+-------+
@@ -70,18 +70,18 @@ VALUES
 
 /*9-2*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Skills
+DROP TABLE IF EXISTS
+	skills
 ;
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	EmpSkills
+DROP TABLE IF EXISTS
+	emp_skills
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Skills
+	skills
 	(
 		skill VARCHAR(32),
 		PRIMARY KEY(skill)
@@ -90,7 +90,7 @@ CREATE TABLE
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	EmpSkills
+	emp_skills
 	(
 		emp VARCHAR(32),
 		skill VARCHAR(32),
@@ -100,7 +100,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Skills
+	skills
 VALUES
 	('Oracle'),
 	('UNIX'),
@@ -109,7 +109,7 @@ VALUES
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	EmpSkills
+	emp_skills
 VALUES
 	('相田', 'Oracle'),
 	('相田', 'UNIX'),
@@ -127,7 +127,7 @@ VALUES
 	('渡来', 'Oracle')
 ;
 
-テーブル名：Skills
+テーブル名：skills
 +--------+
 | skill  |
 +--------+
@@ -136,7 +136,7 @@ VALUES
 | UNIX   |
 +--------+
 
-テーブル名：Skills
+テーブル名：emp_skills
 +-----------+--------+
 | emp       | skill  |
 +-----------+--------+

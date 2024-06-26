@@ -1,9 +1,9 @@
 SELECT
 	es.emp
 FROM
-	EmpSkills AS es
+	emp_skills AS es
 LEFT JOIN
-	Skills AS s
+	skills AS s
 ON
 	es.skill = s.skill
 GROUP BY
@@ -13,7 +13,7 @@ HAVING
 		SELECT
 			COUNT(skill)
 		FROM
-			Skills
+			skills
 			
 		)
 AND
@@ -21,7 +21,7 @@ AND
 		SELECT
 			COUNT(skill)
 		FROM
-			Skills
+			skills
 			
 	)
 ;

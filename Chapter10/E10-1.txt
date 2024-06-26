@@ -2,14 +2,14 @@
 SELECT
 	sv.seq
 FROM
-	Sequence AS sv
+	sequence AS sv
 WHERE
 	NOT EXISTS
 	(
 		SELECT
 			seq
 		FROM
-			SeqTbl AS s
+			seqtbl AS s
 		WHERE
 			s.seq = sv.seq
 	)
@@ -19,9 +19,9 @@ WHERE
 SELECT
 	sv.seq
 FROM
-	Sequence AS sv
+	sequence AS sv
 LEFT JOIN
-	SeqTbl AS s
+	seqtbl AS s
 ON
 	s.seq = sv.seq
 WHERE

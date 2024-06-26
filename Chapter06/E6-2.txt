@@ -2,7 +2,7 @@
 SELECT
 	*
 FROM
-	Students
+	students
 GROUP BY
 	dpt
 HAVING

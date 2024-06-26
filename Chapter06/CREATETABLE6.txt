@@ -1,12 +1,12 @@
 /*E6-1*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	SeqTbl
+DROP TABLE IF EXISTS
+	seqtbl
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	SeqTbl
+	seqtbl
 	(
 		seq INTEGER PRIMARY KEY,
 		name VARCHAR(16) NOT NULL
@@ -15,7 +15,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	SeqTbl
+	seqtbl
 VALUES
 	(1, 'ディック'),
 	(2, 'アン'),
@@ -25,7 +25,7 @@ VALUES
 	(8, 'ベン')
 ;
 
-テーブル名：SeqTbl
+テーブル名：seqtbl
 +-----+--------------+
 | seq | name         |
 +-----+--------------+
@@ -40,13 +40,13 @@ VALUES
 
 /*E6-2*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Students
+DROP TABLE IF EXISTS
+	students
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Students
+	students
 	(
 		student_id INTEGER PRIMARY KEY,
 		dpt VARCHAR(16) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Students
+	students
 VALUES
 	(100, '理学部', '2018-10-10'),
 	(101, '理学部', '2018-09-22'),
@@ -67,7 +67,7 @@ VALUES
 	(202, '経済学部', '2018-09-25')
 ;
 
-テーブル名：Students
+テーブル名：students
 +------------+--------------+------------+
 | student_id | dpt          | sbmt_date  |
 +------------+--------------+------------+
@@ -83,18 +83,18 @@ VALUES
 
 /*E6-3*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Items
+DROP TABLE IF EXISTS
+	items
 ;
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	ShopItems
+DROP TABLE IF EXISTS
+	shop_items
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Items
+	items
 	(
 		item VARCHAR(16) PRIMARY KEY
 	)
@@ -102,7 +102,7 @@ CREATE TABLE
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	ShopItems
+	shop_items
 	(
 		shop VARCHAR(16),
 		item VARCHAR(16),
@@ -112,7 +112,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Items
+	items
 VALUES
 	('ビール'),
 	('紙オムツ'),
@@ -121,7 +121,7 @@ VALUES
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	ShopItems
+	shop_items
 VALUES
 	('仙台', 'ビール'),
 	('仙台', '紙オムツ'),
@@ -135,7 +135,7 @@ VALUES
 	('大阪', '自転車')
 ;
 
-テーブル名：Items
+テーブル名：items
 +--------------+
 | item         |
 +--------------+
@@ -144,7 +144,7 @@ VALUES
 | 自転車       |
 +--------------+
 
-テーブル名：ShopItems
+テーブル名：shop_items
 +--------+--------------+
 | shop   | item         |
 +--------+--------------+

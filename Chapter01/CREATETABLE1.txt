@@ -1,12 +1,12 @@
 /*E1-1*/
 /*作成予定のテーブルを削除*/
-DROP TABLE
-	Greatests
+DROP TABLE IF EXISTS
+	greatests
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Greatests
+	greatests
 	(
 		number VARCHAR(1),
 		x INT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE
 
 /*テーブルにデータを挿入*/
 INSERT INTO
-	Greatests
+	greatests
 VALUES
 	('A', 1, 2, 3),
 	('B', 5, 5, 2),
@@ -26,7 +26,7 @@ VALUES
 	('D', 3, 3, 8)
 ;
 
-テーブル名：Greatests
+テーブル名：greatests
 +--------+------+------+------+
 | number | x    | y    | z    |
 +--------+------+------+------+
@@ -39,13 +39,13 @@ VALUES
 
 /*E1-2*/
 /*作成予定のテーブルを削除*/
-DROP TABLE
-	PopTbl2
+DROP TABLE IF EXISTS
+	poptbl2
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	PopTbl2(
+	poptbl2(
 		pref_name VARCHAR(32),
 		sex CHAR(1) NOT NULL,
 		population INTEGER NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE
 
 /*テーブルにデータを挿入*/
 INSERT INTO
-	PopTbl2
+	poptbl2
 VALUES
 	('徳島', '1', 60),
 	('徳島', '2', 40),
@@ -75,7 +75,7 @@ VALUES
 	('東京', '2', 150)
 ;
 
-テーブル名：PopTbl2
+テーブル名：poptbl2
 +-----------+-----+------------+
 | pref_name | sex | population |
 +-----------+-----+------------+
@@ -100,13 +100,13 @@ VALUES
 
 /*E1-3*/
 /*作成予定のテーブルを削除*/
-DROP TABLE
-	Greatests
+DROP TABLE IF EXISTS
+	greatests
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Greatests
+	greatests
 	(
 		number VARCHAR(1),
 		x INT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE
 
 /*テーブルにデータを挿入*/
 INSERT INTO
-	Greatests
+	greatests
 VALUES
 	('A', 1, 2, 3),
 	('B', 5, 5, 2),
@@ -126,7 +126,7 @@ VALUES
 	('D', 3, 3, 8)
 ;
 
-テーブル名：Greatests
+テーブル名：greatests
 +--------+------+------+------+
 | number | x    | y    | z    |
 +--------+------+------+------+

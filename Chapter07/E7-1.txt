@@ -6,7 +6,7 @@ SELECT
 		SELECT
 			AVG(prc_amt)
 		FROM
-			Accounts AS sa
+			accounts AS sa
 		WHERE
 			fa.prc_date >= sa.prc_date
 		AND
@@ -14,14 +14,14 @@ SELECT
 				SELECT
 					COUNT(*)
 				FROM
-					Accounts AS ta
+					accounts AS ta
 				WHERE
 					ta.prc_date BETWEEN sa.prc_date AND fa.prc_date
 			/*3行まで計算*/
 			) <= 3
 	) AS avg
 FROM
-	Accounts AS fa
+	accounts AS fa
 ;
 
 使用するテーブル

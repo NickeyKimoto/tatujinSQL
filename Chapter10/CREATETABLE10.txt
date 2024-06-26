@@ -1,12 +1,12 @@
 /*事前準備*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Digits
+DROP TABLE IF EXISTS
+	digits
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Digits
+	digits
 	(
 		digit INTEGER PRIMARY KEY
 	)
@@ -14,7 +14,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Digits
+	digits
 VALUES
 	(0),
 	(1),
@@ -31,26 +31,27 @@ VALUES
 
 /*10-1*/
 /*既存のビューを削除*/
-DROP VIEW
-	Sequence
+DROP VIEW IF EXISTS
+	sequence
 ;
 
 /*使用するビューを作成*/
 CREATE VIEW
-	Sequence (seq) AS
+	sequence (seq) AS
 SELECT
 	D1.digit + (D2.digit * 10) + (D3.digit * 100)
 FROM
-	Digits AS D1
+	digits AS d1
 CROSS JOIN
-	Digits D2
+	digits AS d2
 CROSS JOIN
-	Digits D3
+	digits AS d3
 WHERE
-	D1.digit + (D2.digit * 10) + (D3.digit * 100) BETWEEN 1 AND 12
+	/*範囲を歯抜け数列の最小値と最大値に合わせる*/
+	d1.digit + (d2.digit * 10) + (d3.digit * 100) BETWEEN 1 AND 12
 ;
 
-ビュー名：Sequence
+ビュー名：sequence
 +-----+
 | seq |
 +-----+
@@ -69,13 +70,13 @@ WHERE
 +-----+
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	SeqTbl
+DROP TABLE IF EXISTS
+	seqtbl
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	SeqTbl
+	seqtbl
 	(
 		seq INTEGER PRIMARY KEY
 	)
@@ -83,7 +84,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	SeqTbl
+	seqtbl
 VALUES
 	(1),
 	(2),
@@ -96,7 +97,7 @@ VALUES
 	(12)
 ;
 
-テーブル名：SeqTbl
+テーブル名：seqtbl
 +-----+
 | seq |
 +-----+
@@ -114,13 +115,13 @@ VALUES
 
 /*10-2*/
 /*既存のテーブルを削除*/
-DROP TABLE
-	Seats
+DROP TABLE IF EXISTS
+	seats
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Seats
+	seats
 	(
 		seat INTEGER NOT NULL PRIMARY KEY,
 		status CHAR(2) NOT NULL
@@ -130,7 +131,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Seats
+	seats
 VALUES
 	(1, '占'),
 	(2, '占'),
@@ -149,7 +150,7 @@ VALUES
 	(15, '空')
 ;
 
-テーブル名：Seats
+テーブル名：seats
 +------+--------+
 | seat | status |
 +------+--------+
@@ -171,13 +172,13 @@ VALUES
 +------+--------+
 
 /*既存のテーブルを削除*/
-DROP TABLE
-	Seats2
+DROP TABLE IF EXISTS
+	seats2
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Seats2
+	seats2
 	(
 		seat INTEGER NOT NULL PRIMARY KEY,
 		line_id CHAR(1) NOT NULL,
@@ -188,7 +189,7 @@ CREATE TABLE
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	Seats2
+	seats2
 VALUES
 	(1, 'A', '占'),
 	(2, 'A', '占'),
@@ -207,7 +208,7 @@ VALUES
 	(15, 'C', '空')
 ;
 
-テーブル名：Seats2
+テーブル名：seats2
 +------+---------+--------+
 | seat | line_id | status |
 +------+---------+--------+

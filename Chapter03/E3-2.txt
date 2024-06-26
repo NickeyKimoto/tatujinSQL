@@ -1,16 +1,16 @@
 /*重複データを持つテーブルに識別子を与えたテーブルを作成*/
-CREATE TABLE
-	Products_id
+CREATE TABLE IF EXISTS
+	products_id
 		SELECT
 			*,
 			ROW_NUMBER()OVER(PARTITION BY name, price) AS id
 		FROM
-			Products
+			products
 ;
 
 /*テーブルから重複データを削除*/
 DELETE FROM
-	Products_id
+	products_id
 WHERE
 	/*idが1を超えるデータは重複データである*/
 	id > 1

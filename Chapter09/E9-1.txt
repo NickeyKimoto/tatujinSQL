@@ -6,14 +6,14 @@ SELECT
 				SELECT
 					COUNT(*)
 				FROM
-					Tbl_A
+					tbl_a
 			)
 		AND
 			COUNT(*) = (
 				SELECT
 					COUNT(*)
 				FROM
-					Tbl_B
+					tbl_b
 			)
 		 THEN '＝'
 		ELSE '≠'
@@ -23,13 +23,13 @@ FROM
 		SELECT
 			*
 		FROM
-			Tbl_A
+			tbl_a
 		UNION
 			SELECT
 				*
 			FROM
-				Tbl_B
-	) AS TMP
+				tbl_b
+	) AS tmp
 ;
 
 使用するテーブル

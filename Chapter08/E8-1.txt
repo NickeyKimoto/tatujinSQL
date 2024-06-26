@@ -20,22 +20,22 @@ FROM
 			age_class,
 			sex_cd
 		FROM
-			TblAge
+			tblage
 		CROSS JOIN
-			TblSex
-	) AS MASTER
+			tblsex
+	) AS master
 LEFT JOIN
-	TblPop
+	tblpop
 ON
-	MASTER.age_class = TblPop.age_class
+	master.age_class = tblpop.age_class
 AND
-	MASTER.sex_cd = TblPop.sex_cd
+	master.sex_cd = tblpop.sex_cd
 GROUP BY
-	MASTER.age_class,
-	MASTER.sex_cd
+	master.age_class,
+	master.sex_cd
 ORDER BY
-	MASTER.age_class ASC,
-	MASTER.sex_cd DESC
+	master.age_class ASC,
+	master.sex_cd DESC
 ;
    
 

@@ -1,6 +1,11 @@
+/*使用するビューを削除*/
+DROP VIEW IF EXISTS
+	children
+;
+
 /*子供の一覧を保持するビューを作成*/
 CREATE VIEW
-	Children
+	children
 	(
 		child
 	)
@@ -8,33 +13,33 @@ AS
 	SELECT
 		child_1
 	FROM
-		Personnel
+		personnel
 UNION
 	SELECT
 		child_2
 	FROM
-		Personnel
+		personnel
 UNION
 	SELECT
 		child_3
 	FROM
-		Personnel
+		personnel
 ;
 
 /*指定された結果を求める*/
 SELECT
 	EMP.employee,
-	COUNT(Children.child) AS child_cnt
+	COUNT(children.child) AS child_cnt
 FROM
-	Personnel AS EMP
+	personnel AS emp
 LEFT JOIN
-	Children
+	children
 ON
-	Children.child IN (EMP.child_1, EMP.child_2, EMP.child_3)
+	children.child IN (emp.child_1, emp.child_2, emp.child_3)
 GROUP BY
-	EMP.employee
+	emp.employee
 ORDER BY
-	COUNT(Children.child) DESC
+	COUNT(children.child) DESC
 ;
 
 使用するテーブル

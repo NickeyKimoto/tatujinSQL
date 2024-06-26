@@ -1,12 +1,12 @@
 /*E4-1*/
 /*使用予定のテーブルを削除*/
-DROP TABLE
-	Students
+DROP TABLE IF EXISTS
+	students
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Students
+	students
 	(
 		name CHAR(16) PRIMARY KEY,
 		age INTEGER
@@ -15,7 +15,7 @@ CREATE TABLE
 
 /*テーブルにデータを挿入*/
 INSERT INTO
-	Students
+	students
 VALUES
 	('ブラウン', 22),
 	('ラリー', 19),
@@ -23,7 +23,7 @@ VALUES
 	('ボギー', 21)
 ;
 
-テーブル名：Students
+テーブル名：students
 +--------------+------+
 | name         | age  |
 +--------------+------+
@@ -36,13 +36,13 @@ VALUES
 
 /*E4-2*/
 /*使用予定のテーブルを削除*/
-DROP TABLE
-	Students
+DROP TABLE IF EXISTS
+	students
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	Students
+	students
 	(
 		name CHAR(16) PRIMARY KEY,
 		age INTEGER
@@ -51,7 +51,7 @@ CREATE TABLE
 
 /*テーブルにデータを挿入*/
 INSERT INTO
-	Students
+	students
 VALUES
 	('ブラウン', 22),
 	('ラリー', 19),
@@ -59,7 +59,7 @@ VALUES
 	('ボギー', 21)
 ;
 
-テーブル名：Students
+テーブル名：students
 +--------------+------+
 | name         | age  |
 +--------------+------+

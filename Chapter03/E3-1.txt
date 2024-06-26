@@ -3,9 +3,9 @@ SELECT
 	nf.name AS name_1,
 	ns.name AS name_2
 FROM
-	Products AS nf
+	products AS nf
 INNER JOIN
-	Products AS ns
+	products AS ns
 ON
 	nf.name >= ns.name
 ORDER BY

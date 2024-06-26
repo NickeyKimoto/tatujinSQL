@@ -2,7 +2,7 @@
 SELECT
 	number AS 'key'
 FROM
-	Greatests
+	greatests
 ORDER BY
 	number = 'C',
 	number = 'D',

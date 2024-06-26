@@ -6,12 +6,12 @@ SELECT
 		SELECT
 			COUNT(item)
 		FROM
-			Items
+			items
 	) - COUNT(si.item) AS diff_cnt
 FROM
-	ShopItems AS si
+	shop_items AS si
 INNER JOIN
-	Items AS i
+	items AS i
 ON
 	si.item = i.item
 GROUP BY
