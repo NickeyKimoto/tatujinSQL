@@ -1,5 +1,10 @@
+/*products_idテーブルを削除*/
+DROP TABLE IF EXISTS
+	products_id
+;
+
 /*重複データを持つテーブルに識別子を与えたテーブルを作成*/
-CREATE TABLE IF EXISTS
+CREATE TABLE
 	products_id
 		SELECT
 			*,
