@@ -28,16 +28,16 @@ UNION
 
 /*指定された結果を求める*/
 SELECT
-	EMP.employee,
+	p.employee,
 	COUNT(children.child) AS child_cnt
 FROM
-	personnel AS emp
+	personnel AS p
 LEFT JOIN
 	children
 ON
-	children.child IN (emp.child_1, emp.child_2, emp.child_3)
+	children.child IN (p.child_1, p.child_2, p.child_3)
 GROUP BY
-	emp.employee
+	p.employee
 ORDER BY
 	COUNT(children.child) DESC
 ;

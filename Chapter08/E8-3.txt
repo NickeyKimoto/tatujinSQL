@@ -5,7 +5,9 @@ SELECT
 	*
 FROM
 	class_b AS b
-ON DUPLICATE KEY UPDATE
+ON
+	DUPLICATE KEY
+UPDATE
 	name = b.name
 ;
 
