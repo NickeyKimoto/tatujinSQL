@@ -1,28 +1,35 @@
-SELECT
-	es.emp
+/*厳密な除算をし、過不足なくスキルを持っている社員を選ぶ*/
+SELECT DISTINCT
+	emp
 FROM
-	emp_skills AS es
-LEFT JOIN
-	skills AS s
-ON
-	es.skill = s.skill
-GROUP BY
-	es.emp
-HAVING
-	COUNT(es.skill) = (
+	EmpSkills AS ES1
+WHERE
+	NOT EXISTS(
 		SELECT
-			COUNT(skill)
+			skill
 		FROM
-			skills
-			
-		)
+			Skills
+		EXCEPT
+		SELECT
+			skill
+		FROM
+			EmpSkills AS ES2
+		WHERE
+			ES1.emp = ES2.emp
+	)
 AND
-	COUNT(s.skill) = (
+	NOT EXISTS(
 		SELECT
-			COUNT(skill)
+			skill
 		FROM
-			skills
-			
+			EmpSkills AS ES3
+		WHERE
+			ES1.emp = ES3.emp
+		EXCEPT
+		SELECT
+			skill
+		FROM
+			Skills
 	)
 ;
 

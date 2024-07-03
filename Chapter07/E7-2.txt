@@ -7,22 +7,22 @@ SELECT
 	CASE
 		/*3行未満の場合はNULLを表示*/
 		WHEN c < 3 THEN NULL
-		ELSE aa
+		ELSE apa
 	END AS AVG
 FROM
 (
 	SELECT
 		prc_date,
 		prc_amt,
-		AVG(prc_amt)
-		OVER(
-			ORDER BY prc_date
+		AVG(prc_amt)OVER(
+			ORDER BY
+				prc_date
 			/*2行前を指定*/
 			ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
-		) AS aa,
-		COUNT(*)
-		OVER(
-			ORDER BY prc_date
+		) AS apa,
+		COUNT(*)OVER(
+			ORDER BY
+				prc_date
 			/*2行前を指定*/
 			ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
 		) AS c

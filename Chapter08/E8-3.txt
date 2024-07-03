@@ -1,6 +1,10 @@
 /*class_bのデータをclass_aにマージする*/
 INSERT INTO
-	class_a(id, name)
+	class_a
+	(
+		id,
+		name
+	)
 SELECT
 	*
 FROM

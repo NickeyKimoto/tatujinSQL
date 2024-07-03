@@ -1,34 +1,85 @@
+/*事前準備として、欠番がないテーブルを作成する*/
+/*既存のテーブルを削除*/
+DROP TABLE IF EXISTS
+	sequence
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	sequence
+	(
+		seq INTEGER PRIMARY KEY
+	)
+; 
+
+/*使用するテーブルにデータを挿入*/
+INSERT INTO
+	sequence
+VALUES
+	(1),
+	(2),
+	(3),
+	(4),
+	(5),
+	(6),
+	(7),
+	(8),
+	(9),
+	(10),
+	(11),
+	(12)
+;
+
 /*NOT EXISTSを使って欠番を求める*/
 SELECT
-	sv.seq
+	s.seq
 FROM
-	sequence AS sv
+	sequence AS s
 WHERE
 	NOT EXISTS
 	(
 		SELECT
 			seq
 		FROM
-			seqtbl AS s
+			seqtbl AS st
 		WHERE
-			s.seq = sv.seq
+			st.seq = s.seq
 	)
 ;
 
 /*外部結合を使って欠番を求める*/
 SELECT
-	sv.seq
+	s.seq
 FROM
-	sequence AS sv
+	sequence AS s
 LEFT JOIN
-	seqtbl AS s
+	seqtbl AS st
 ON
-	s.seq = sv.seq
+	st.seq = s.seq
 WHERE
-	s.seq IS NULL
+	st.seq IS NULL
 ;
 
 使用するテーブル
+[sequence]
++-----+
+| seq |
++-----+
+|   1 |
+|   2 |
+|   3 |
+|   4 |
+|   5 |
+|   6 |
+|   7 |
+|   8 |
+|   9 |
+|  10 |
+|  11 |
+|  12 |
++-----+
+
+[seqtbl]
 +-----+
 | seq |
 +-----+
