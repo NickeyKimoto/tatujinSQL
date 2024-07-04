@@ -2,18 +2,18 @@
 SELECT DISTINCT
 	emp
 FROM
-	EmpSkills AS ES1
+	emp_skills AS ES1
 WHERE
 	NOT EXISTS(
 		SELECT
 			skill
 		FROM
-			Skills
+			skills
 		EXCEPT
 		SELECT
 			skill
 		FROM
-			EmpSkills AS ES2
+			emp_skills AS ES2
 		WHERE
 			ES1.emp = ES2.emp
 	)
@@ -22,14 +22,14 @@ AND
 		SELECT
 			skill
 		FROM
-			EmpSkills AS ES3
+			emp_skills AS ES3
 		WHERE
 			ES1.emp = ES3.emp
 		EXCEPT
 		SELECT
 			skill
 		FROM
-			Skills
+			skills
 	)
 ;
 
