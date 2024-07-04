@@ -1,4 +1,38 @@
-/*事前準備として、欠番がないテーブルを作成する*/
+/*欠番を求めるテーブルに識別子を与えたテーブル作成する*/
+/*既存のテーブルを削除*/
+DROP TABLE IF EXISTS
+	number_seqtbl
+;
+
+/*使用するテーブルを作成*/
+CREATE TABLE
+	number_seqtbl
+		SELECT
+			*,
+			ROW_NUMBER()OVER() AS id
+		FROM
+			seqtbl
+;
+
+/*NOT EXISTSを使って欠番を求める*/
+SELECT
+	id
+FROM
+	number_seqtbl
+WHERE
+	NOT EXISTS
+	(
+		SELECT
+			seq
+		FROM
+			number_seqtbl
+		WHERE
+			seq IS NOT NULL
+	)
+;
+
+
+
 /*既存のテーブルを削除*/
 DROP TABLE IF EXISTS
 	sequence

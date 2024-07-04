@@ -10,8 +10,8 @@ SELECT
 FROM
 	class_b AS b
 ON
-	DUPLICATE KEY
-UPDATE
+	DUPLICATE
+KEY UPDATE
 	name = b.name
 ;
 
