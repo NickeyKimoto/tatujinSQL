@@ -1,55 +1,22 @@
-/*欠番を求めるテーブルに識別子を与えたテーブル作成する*/
+/*解法に利用するビューを作成するためのテーブルを作成*/
 /*既存のテーブルを削除*/
 DROP TABLE IF EXISTS
-	number_seqtbl
+	Digits
 ;
 
 /*使用するテーブルを作成*/
 CREATE TABLE
-	number_seqtbl
-		SELECT
-			*,
-			ROW_NUMBER()OVER() AS id
-		FROM
-			seqtbl
-;
-
-/*NOT EXISTSを使って欠番を求める*/
-SELECT
-	id
-FROM
-	number_seqtbl
-WHERE
-	NOT EXISTS
+	Digits
 	(
-		SELECT
-			seq
-		FROM
-			number_seqtbl
-		WHERE
-			seq IS NOT NULL
+		digit INTEGER PRIMARY KEY
 	)
 ;
-
-
-
-/*既存のテーブルを削除*/
-DROP TABLE IF EXISTS
-	sequence
-;
-
-/*使用するテーブルを作成*/
-CREATE TABLE
-	sequence
-	(
-		seq INTEGER PRIMARY KEY
-	)
-; 
 
 /*使用するテーブルにデータを挿入*/
 INSERT INTO
-	sequence
+	Digits
 VALUES
+	(0),
 	(1),
 	(2),
 	(3),
@@ -58,28 +25,57 @@ VALUES
 	(6),
 	(7),
 	(8),
-	(9),
-	(10),
-	(11),
-	(12)
+	(9)
+; 
+
+/*解法に利用するビューを作成*/
+/*既存のビューを削除*/
+DROP VIEW IF EXISTS
+	sequence
+;
+
+/*同名の既存のテーブルを削除*/
+DROP TABLE IF EXISTS
+	sequence
+;
+
+/*使用するビューを作成*/
+CREATE VIEW
+	sequence
+	(
+		seq
+	) AS
+		SELECT
+			d1.digit + (d2.digit * 10) + (d3.digit * 100)
+		FROM
+			digits AS d1
+		CROSS JOIN
+			digits AS d2
+		CROSS JOIN
+			digits AS d3
 ;
 
 /*NOT EXISTSを使って欠番を求める*/
 SELECT
-	s.seq
+	sv.seq
 FROM
-	sequence AS s
+	sequence AS sv
 WHERE
 	NOT EXISTS
 	(
 		SELECT
 			seq
 		FROM
-			seqtbl AS st
+			seqTbl AS s
 		WHERE
-			st.seq = s.seq
+			s.seq = sv.seq
 	)
+AND
+	/*欠番テーブルの範囲*/
+	sv.seq BETWEEN 1 AND 12
 ;
+
+
 
 /*外部結合を使って欠番を求める*/
 SELECT
@@ -92,26 +88,27 @@ ON
 	st.seq = s.seq
 WHERE
 	st.seq IS NULL
+AND
+	/*欠番テーブルの範囲*/
+	s.seq BETWEEN 1 AND 12
 ;
 
 使用するテーブル
-[sequence]
-+-----+
-| seq |
-+-----+
-|   1 |
-|   2 |
-|   3 |
-|   4 |
-|   5 |
-|   6 |
-|   7 |
-|   8 |
-|   9 |
-|  10 |
-|  11 |
-|  12 |
-+-----+
+[digits]
++-------+
+| digit |
++-------+
+|     0 |
+|     1 |
+|     2 |
+|     3 |
+|     4 |
+|     5 |
+|     6 |
+|     7 |
+|     8 |
+|     9 |
++-------+
 
 [seqtbl]
 +-----+
